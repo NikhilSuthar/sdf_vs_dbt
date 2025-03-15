@@ -1,0 +1,23 @@
+table:
+  name: DB.RAW.STG_PAYMENTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - DB.SDF.DIM_PAYMENTS
+  columns:
+  - name: PAYMENT_ID
+    datatype: decimal(38, 0)
+  - name: PAYMENT_DATE
+    datatype: date
+  - name: PAYMENT_METHOD
+    datatype: varchar
+  - name: PAYMENT_AMOUNT
+    datatype: decimal(38, 0)
+  - name: STATUS
+    datatype: varchar
+  source-locations:
+  - path: workspace.sdf.yml

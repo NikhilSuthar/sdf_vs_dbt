@@ -1,0 +1,13 @@
+table:
+  name: datalake.dbt_test.MY_SDF_TABLE
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DATALAKE.DBT_TEST.MY_FIRST_DBT_MODEL
+  columns:
+  - name: ID
+    datatype: decimal(1, 0)
+  source-locations:
+  - path: models/datalake/dbt_test/my_sdf_table.sql

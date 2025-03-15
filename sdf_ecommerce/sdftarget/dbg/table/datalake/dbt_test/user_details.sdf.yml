@@ -1,0 +1,29 @@
+table:
+  name: DATALAKE.DBT_TEST.USER_DETAILS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DATALAKE.DBT_TEST.MY_DETAILS
+  columns:
+  - name: USERNAME
+    datatype: varchar not null
+    lineage:
+      copy:
+      - DATALAKE.DBT_TEST.MY_DETAILS.NAME
+  - name: CITY
+    datatype: varchar not null
+    lineage:
+      copy:
+      - DATALAKE.DBT_TEST.MY_DETAILS.CITY
+  - name: AGE
+    datatype: decimal(38, 0)
+    lineage:
+      modify:
+      - DATALAKE.DBT_TEST.MY_DETAILS.DOB
+  lineage:
+    scan:
+    - DATALAKE.DBT_TEST.MY_DETAILS.CITY
+  source-locations:
+  - path: models/datalake/dbt_test/user_details.sql

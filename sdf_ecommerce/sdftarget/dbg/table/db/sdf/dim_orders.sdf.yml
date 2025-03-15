@@ -1,0 +1,35 @@
+table:
+  name: DB.SDF.DIM_ORDERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.RAW.STG_ORDERS
+  depended-on-by:
+  - DB.SDF.CUST_ORDER_SUMMARY
+  - DB.SDF.CUST_PRODUCT_REVIEW
+  - DB.SDF.ORDER_PAYMENT_DTLS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+  - name: CUST_ID
+    datatype: varchar
+  - name: ORDER_DATE
+    datatype: date
+  - name: ORDER_QTY
+    datatype: decimal(38, 0)
+  - name: AMOUNT
+    datatype: decimal(38, 0)
+  - name: PAYMENT_ID
+    datatype: varchar
+  - name: PRODUCT_ID
+    datatype: varchar
+  - name: STATUS
+    datatype: varchar
+  - name: RATING
+    datatype: decimal(38, 0)
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/db/sdf/dim_orders.sql

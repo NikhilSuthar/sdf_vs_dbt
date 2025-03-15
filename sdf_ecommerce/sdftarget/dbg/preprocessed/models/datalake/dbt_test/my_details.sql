@@ -1,0 +1,1 @@
+SELECT 'Nikhil' as name, 'Pune' as city, '1993-01-01' as dob FROM DATALAKE.DBT_TEST.MY_FIRST_DBT_MODEL;

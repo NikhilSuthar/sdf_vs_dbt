@@ -1,0 +1,78 @@
+table:
+  name: ECOM.SDF.DIM_ORDERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.RAW.STG_ORDERS
+  depended-on-by:
+  - ECOM.SDF.CUST_ORDER_SUMMARY
+  - ECOM.SDF.CUST_PRODUCT_REVIEW
+  - ECOM.SDF.ORDER_PAYMENT_DTLS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.ORDER_ID
+    forward-lineage:
+      copy:
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.ORDER_ID
+      modify:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.TOTAL_ORDERS
+  - name: CUST_ID
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.CUST_ID
+  - name: ORDER_DATE
+    datatype: date
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.ORDER_DATE
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.FIRST_ORDER_DATE
+      - ECOM.SDF.CUST_ORDER_SUMMARY.LAST_ORDER_DATE
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.ORDER_DATE
+  - name: ORDER_QTY
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.ORDER_QTY
+  - name: AMOUNT
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.AMOUNT
+    forward-lineage:
+      modify:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.TOTAL_SPENT
+  - name: PAYMENT_ID
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.PAYMENT_ID
+  - name: PRODUCT_ID
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.PRODUCT_ID
+  - name: STATUS
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.STATUS
+  - name: RATING
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_ORDERS.RATING
+    forward-lineage:
+      modify:
+      - ECOM.SDF.CUST_PRODUCT_REVIEW.RATING
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/ecom/sdf/dim_orders.sql

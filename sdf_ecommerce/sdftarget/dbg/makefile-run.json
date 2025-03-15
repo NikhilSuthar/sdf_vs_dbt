@@ -1,0 +1,274 @@
+{
+  "contents": {
+    "cli_vars": "99914b932bd37a50b983c5e7c90ae93b",
+    "credentials": "07e0c42b4b450577ee1566d688a07a5d",
+    "env_vars": "d751713988987e9331980363e24189ce"
+  },
+  "prelude": [
+    {
+      "file": "workspace.sdf.yml",
+      "mtime": "2025-03-15T09:45:31.824017320Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_test/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_mat/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_test/macros/test.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/macros/generate_surrogate_key.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/macros/generate_integer_values.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/macros/date_spine.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/macros/group_by.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/macros/generate_date_values.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_mat/macros/dialect/trino/materialize.jinja",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_mat/macros/dialect/snowflake/materialize.jinja",
+      "mtime": "2025-03-08T10:07:21.976726136Z"
+    }
+  ],
+  "deps": [
+    {
+      "target": "ECOM.RAW.STG_CUSTOMER",
+      "deps": []
+    },
+    {
+      "target": "ECOM.RAW.STG_ORDERS",
+      "deps": []
+    },
+    {
+      "target": "ECOM.RAW.STG_PAYMENTS",
+      "deps": []
+    },
+    {
+      "target": "ECOM.RAW.STG_PRODUCTS",
+      "deps": []
+    },
+    {
+      "target": "ECOM.SDF.DIM_CUSTOMERS",
+      "deps": [
+        "ECOM.RAW.STG_CUSTOMER"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.DIM_ORDERS",
+      "deps": [
+        "ECOM.RAW.STG_ORDERS"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.CUST_ORDER_SUMMARY",
+      "deps": [
+        "ECOM.SDF.DIM_CUSTOMERS",
+        "ECOM.SDF.DIM_ORDERS"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.DIM_PRODUCTS",
+      "deps": [
+        "ECOM.RAW.STG_PRODUCTS"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.CUST_PRODUCT_REVIEW",
+      "deps": [
+        "ECOM.SDF.DIM_CUSTOMERS",
+        "ECOM.SDF.DIM_ORDERS",
+        "ECOM.SDF.DIM_PRODUCTS"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.DIM_PAYMENTS",
+      "deps": [
+        "ECOM.RAW.STG_PAYMENTS"
+      ]
+    },
+    {
+      "target": "ECOM.SDF.ORDER_PAYMENT_DTLS",
+      "deps": [
+        "ECOM.SDF.DIM_CUSTOMERS",
+        "ECOM.SDF.DIM_ORDERS",
+        "ECOM.SDF.DIM_PRODUCTS"
+      ]
+    }
+  ],
+  "source_files": {
+    "values": {
+      "ECOM.RAW.STG_CUSTOMER": [
+        {
+          "file": "sdftarget/dbg/table/ecom/raw/stg_customer.sdf.yml",
+          "mtime": "2025-03-15T09:46:24.063992840Z",
+          "is_remote_origin": true
+        },
+        {
+          "file": "workspace.sdf.yml",
+          "mtime": "2025-03-15T09:45:31.824017320Z"
+        }
+      ],
+      "ECOM.RAW.STG_ORDERS": [
+        {
+          "file": "sdftarget/dbg/table/ecom/raw/stg_orders.sdf.yml",
+          "mtime": "2025-03-15T09:46:24.063992840Z",
+          "is_remote_origin": true
+        },
+        {
+          "file": "workspace.sdf.yml",
+          "mtime": "2025-03-15T09:45:31.824017320Z"
+        }
+      ],
+      "ECOM.RAW.STG_PAYMENTS": [
+        {
+          "file": "sdftarget/dbg/table/ecom/raw/stg_payments.sdf.yml",
+          "mtime": "2025-03-15T09:46:24.063992840Z",
+          "is_remote_origin": true
+        },
+        {
+          "file": "workspace.sdf.yml",
+          "mtime": "2025-03-15T09:45:31.824017320Z"
+        }
+      ],
+      "ECOM.RAW.STG_PRODUCTS": [
+        {
+          "file": "sdftarget/dbg/table/ecom/raw/stg_products.sdf.yml",
+          "mtime": "2025-03-15T09:46:24.063992840Z",
+          "is_remote_origin": true
+        },
+        {
+          "file": "workspace.sdf.yml",
+          "mtime": "2025-03-15T09:45:31.824017320Z"
+        }
+      ],
+      "ECOM.SDF.CUST_ORDER_SUMMARY": [
+        {
+          "file": "models/ecom/sdf/cust_order_summary.sql",
+          "mtime": "2025-03-09T13:13:31.204038937Z"
+        }
+      ],
+      "ECOM.SDF.CUST_PRODUCT_REVIEW": [
+        {
+          "file": "models/ecom/sdf/cust_product_review.sql",
+          "mtime": "2025-03-09T13:13:12.924044916Z"
+        }
+      ],
+      "ECOM.SDF.DIM_CUSTOMERS": [
+        {
+          "file": "models/ecom/sdf/dim_customers.sql",
+          "mtime": "2025-03-09T13:12:03.604067388Z"
+        }
+      ],
+      "ECOM.SDF.DIM_ORDERS": [
+        {
+          "file": "models/ecom/sdf/dim_orders.sql",
+          "mtime": "2025-03-09T13:18:59.843893225Z"
+        }
+      ],
+      "ECOM.SDF.DIM_PAYMENTS": [
+        {
+          "file": "models/ecom/sdf/dim_payments.sql",
+          "mtime": "2025-03-09T13:11:35.584077966Z"
+        }
+      ],
+      "ECOM.SDF.DIM_PRODUCTS": [
+        {
+          "file": "models/ecom/sdf/dim_products.sql",
+          "mtime": "2025-03-09T13:11:48.684073004Z"
+        }
+      ],
+      "ECOM.SDF.ORDER_PAYMENT_DTLS": [
+        {
+          "file": "models/ecom/sdf/order_payment_dtls.sql",
+          "mtime": "2025-03-09T13:12:37.104056433Z"
+        }
+      ]
+    }
+  },
+  "incomplete_source_files": {
+    "values": []
+  },
+  "target_status": {
+    "values": {
+      "ECOM.RAW.STG_CUSTOMER": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.RAW.STG_ORDERS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.RAW.STG_PAYMENTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.RAW.STG_PRODUCTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.CUST_ORDER_SUMMARY": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.CUST_PRODUCT_REVIEW": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.DIM_CUSTOMERS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.DIM_ORDERS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.DIM_PAYMENTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.DIM_PRODUCTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "ECOM.SDF.ORDER_PAYMENT_DTLS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      }
+    }
+  }
+}

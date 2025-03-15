@@ -1,0 +1,52 @@
+table:
+  name: ECOM.SDF.DIM_PRODUCTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.RAW.STG_PRODUCTS
+  depended-on-by:
+  - ECOM.SDF.CUST_PRODUCT_REVIEW
+  - ECOM.SDF.ORDER_PAYMENT_DTLS
+  columns:
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PRODUCTS.PRODUCT_ID
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_PRODUCT_REVIEW.PRODUCT_ID
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.PRODUCT_ID
+  - name: NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PRODUCTS.NAME
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_PRODUCT_REVIEW.PRODUCT_NAME
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.PRODUCT_NAME
+  - name: CATEGORY
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PRODUCTS.CATEGORY
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_PRODUCT_REVIEW.CATEGORY
+  - name: DESCRIPTION
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PRODUCTS.DESCRIPTION
+  - name: PRICE
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PRODUCTS.PRICE
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/ecom/sdf/dim_products.sql

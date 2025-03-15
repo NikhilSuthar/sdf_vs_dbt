@@ -1,0 +1,33 @@
+table:
+  name: DB.SDF.DIM_CUSTOMERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.RAW.STG_CUSTOMER
+  depended-on-by:
+  - DB.SDF.CUST_ORDER_SUMMARY
+  - DB.SDF.CUST_PRODUCT_REVIEW
+  - DB.SDF.ORDER_PAYMENT_DTLS
+  columns:
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+  - name: FIRST_NAME
+    datatype: varchar
+  - name: LAST_NAME
+    datatype: varchar
+  - name: EMAIL
+    datatype: varchar
+  - name: PHONE_NUMBER
+    datatype: varchar
+  - name: ADDRESS
+    datatype: varchar
+  - name: CITY
+    datatype: varchar
+  - name: COUNTRY
+    datatype: varchar
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/db/sdf/dim_customers.sql

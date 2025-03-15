@@ -1,0 +1,43 @@
+table:
+  name: ECOM.SDF.CUST_PRODUCT_REVIEW
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.SDF.DIM_CUSTOMERS
+  - ECOM.SDF.DIM_ORDERS
+  - ECOM.SDF.DIM_PRODUCTS
+  columns:
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.PRODUCT_ID
+  - name: PRODUCT_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.NAME
+  - name: CATEGORY
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.CATEGORY
+  - name: RATING
+    datatype: decimal(38, 0)
+    lineage:
+      modify:
+      - ECOM.SDF.DIM_ORDERS.RATING
+  - name: REFRESHED_AT
+    datatype: timestamp
+  lineage:
+    scan:
+    - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+    - ECOM.SDF.DIM_ORDERS.CUST_ID
+    - ECOM.SDF.DIM_ORDERS.PRODUCT_ID
+    - ECOM.SDF.DIM_PRODUCTS.CATEGORY
+    - ECOM.SDF.DIM_PRODUCTS.NAME
+    - ECOM.SDF.DIM_PRODUCTS.PRODUCT_ID
+  source-locations:
+  - path: models/ecom/sdf/cust_product_review.sql

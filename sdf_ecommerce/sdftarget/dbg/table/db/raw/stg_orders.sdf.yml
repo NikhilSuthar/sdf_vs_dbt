@@ -1,0 +1,31 @@
+table:
+  name: DB.RAW.STG_ORDERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - DB.SDF.DIM_ORDERS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+  - name: CUST_ID
+    datatype: varchar
+  - name: ORDER_DATE
+    datatype: date
+  - name: ORDER_QTY
+    datatype: decimal(38, 0)
+  - name: AMOUNT
+    datatype: decimal(38, 0)
+  - name: PAYMENT_ID
+    datatype: varchar
+  - name: PRODUCT_ID
+    datatype: varchar
+  - name: STATUS
+    datatype: varchar
+  - name: RATING
+    datatype: decimal(38, 0)
+  source-locations:
+  - path: workspace.sdf.yml

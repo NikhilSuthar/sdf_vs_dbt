@@ -1,0 +1,27 @@
+table:
+  name: DB.SDF.ORDER_PAYMENT_DTLS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.SDF.DIM_CUSTOMERS
+  - DB.SDF.DIM_ORDERS
+  - DB.SDF.DIM_PRODUCTS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+  - name: ORDER_DATE
+    datatype: date
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+  - name: PRODUCT_NAME
+    datatype: varchar
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+  - name: CUST_NAME
+    datatype: varchar
+  - name: CONTACT_DTLS
+    datatype: varchar
+  source-locations:
+  - path: models/db/sdf/order_payment_dtls.sql

@@ -1,0 +1,38 @@
+table:
+  name: ECOM.SDF.DIM_PAYMENTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.RAW.STG_PAYMENTS
+  columns:
+  - name: PAYMENT_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PAYMENTS.PAYMENT_ID
+  - name: PAYMENT_DATE
+    datatype: date
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PAYMENTS.PAYMENT_DATE
+  - name: PAYMENT_METHOD
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PAYMENTS.PAYMENT_METHOD
+  - name: PAYMENT_AMOUNT
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PAYMENTS.PAYMENT_AMOUNT
+  - name: STATUS
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_PAYMENTS.STATUS
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/ecom/sdf/dim_payments.sql

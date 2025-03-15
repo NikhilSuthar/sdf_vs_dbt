@@ -1,0 +1,23 @@
+table:
+  name: DB.SDF.CUST_PRODUCT_REVIEW
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.SDF.DIM_CUSTOMERS
+  - DB.SDF.DIM_ORDERS
+  - DB.SDF.DIM_PRODUCTS
+  columns:
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+  - name: PRODUCT_NAME
+    datatype: varchar
+  - name: CATEGORY
+    datatype: varchar
+  - name: RATING
+    datatype: decimal(38, 0)
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/db/sdf/cust_product_review.sql

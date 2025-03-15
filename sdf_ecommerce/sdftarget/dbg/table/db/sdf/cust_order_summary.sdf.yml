@@ -1,0 +1,28 @@
+table:
+  name: DB.SDF.CUST_ORDER_SUMMARY
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.SDF.DIM_CUSTOMERS
+  - DB.SDF.DIM_ORDERS
+  columns:
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+  - name: FIRST_NAME
+    datatype: varchar
+  - name: LAST_NAME
+    datatype: varchar
+  - name: TOTAL_ORDERS
+    datatype: decimal(38, 0)
+  - name: TOTAL_SPENT
+    datatype: decimal(38, 0)
+  - name: FIRST_ORDER_DATE
+    datatype: date
+  - name: LAST_ORDER_DATE
+    datatype: date
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/db/sdf/cust_order_summary.sql

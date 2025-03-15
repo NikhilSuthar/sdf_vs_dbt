@@ -1,0 +1,56 @@
+{
+  "contents": {
+    "cli_vars": "99914b932bd37a50b983c5e7c90ae93b",
+    "credentials": "07e0c42b4b450577ee1566d688a07a5d",
+    "env_vars": "d751713988987e9331980363e24189ce"
+  },
+  "prelude": [
+    {
+      "file": "workspace.sdf.yml",
+      "mtime": "2025-03-09T13:28:14.243703052Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_test/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_utils/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    },
+    {
+      "file": "sdftarget/dbg/.lib/sdf_mat/workspace.sdf.yml",
+      "mtime": "2025-03-08T09:32:38.747389269Z"
+    }
+  ],
+  "deps": [],
+  "source_files": {
+    "values": {}
+  },
+  "incomplete_source_files": {
+    "values": []
+  },
+  "target_status": {
+    "values": {
+      "DB.RAW.STG_CUSTOMER": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "DB.RAW.STG_ORDERS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "DB.RAW.STG_PAYMENTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      },
+      "DB.RAW.STG_PRODUCTS": {
+        "purpose": "model",
+        "status": "succeeded",
+        "draft": false
+      }
+    }
+  }
+}

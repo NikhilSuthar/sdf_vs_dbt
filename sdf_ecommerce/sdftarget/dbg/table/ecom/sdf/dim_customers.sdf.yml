@@ -1,0 +1,82 @@
+table:
+  name: ECOM.SDF.DIM_CUSTOMERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.RAW.STG_CUSTOMER
+  depended-on-by:
+  - ECOM.SDF.CUST_ORDER_SUMMARY
+  - ECOM.SDF.CUST_PRODUCT_REVIEW
+  - ECOM.SDF.ORDER_PAYMENT_DTLS
+  columns:
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.CUST_ID
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.CUST_ID
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.CUST_ID
+  - name: FIRST_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.FIRST_NAME
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.FIRST_NAME
+      modify:
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.CUST_NAME
+  - name: LAST_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.LAST_NAME
+    forward-lineage:
+      copy:
+      - ECOM.SDF.CUST_ORDER_SUMMARY.LAST_NAME
+      modify:
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.CUST_NAME
+  - name: EMAIL
+    datatype: varchar
+    classifiers:
+    - PII.EMAIL
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.EMAIL
+    forward-lineage:
+      copy:
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.CONTACT_DTLS
+  - name: PHONE_NUMBER
+    datatype: varchar
+    classifiers:
+    - PII.PHONE
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.PHONE_NUMBER
+    forward-lineage:
+      copy:
+      - ECOM.SDF.ORDER_PAYMENT_DTLS.CONTACT_DTLS
+  - name: ADDRESS
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.ADDRESS
+  - name: CITY
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.CITY
+  - name: COUNTRY
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.RAW.STG_CUSTOMER.COUNTRY
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/ecom/sdf/source.sdf.yml
+  - path: models/ecom/sdf/dim_customers.sql

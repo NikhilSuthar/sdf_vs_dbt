@@ -1,0 +1,9 @@
+table:
+  name: dim_customers
+  columns:
+    - name: phone_number
+      classifiers:
+        - PII.PHONE
+    - name: email
+      classifiers:
+        - PII.EMAIL

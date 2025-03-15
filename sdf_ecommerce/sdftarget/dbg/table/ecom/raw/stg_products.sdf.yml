@@ -1,0 +1,38 @@
+table:
+  name: ECOM.RAW.STG_PRODUCTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - ECOM.SDF.DIM_PRODUCTS
+  columns:
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.PRODUCT_ID
+  - name: NAME
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.NAME
+  - name: CATEGORY
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.CATEGORY
+  - name: DESCRIPTION
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.DESCRIPTION
+  - name: PRICE
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.PRICE
+  source-locations:
+  - path: workspace.sdf.yml

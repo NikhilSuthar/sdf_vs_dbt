@@ -1,0 +1,59 @@
+table:
+  name: ECOM.SDF.ORDER_PAYMENT_DTLS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.SDF.DIM_CUSTOMERS
+  - ECOM.SDF.DIM_ORDERS
+  - ECOM.SDF.DIM_PRODUCTS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_ID
+  - name: ORDER_DATE
+    datatype: date
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_DATE
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.PRODUCT_ID
+  - name: PRODUCT_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_PRODUCTS.NAME
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+  - name: CUST_NAME
+    datatype: varchar
+    lineage:
+      modify:
+      - ECOM.SDF.DIM_CUSTOMERS.FIRST_NAME
+      - ECOM.SDF.DIM_CUSTOMERS.LAST_NAME
+  - name: CONTACT_DTLS
+    datatype: varchar
+    classifiers:
+    - PII.EMAIL
+    - PII.PHONE
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.EMAIL
+      - ECOM.SDF.DIM_CUSTOMERS.PHONE_NUMBER
+  lineage:
+    scan:
+    - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+    - ECOM.SDF.DIM_ORDERS.CUST_ID
+    - ECOM.SDF.DIM_ORDERS.PRODUCT_ID
+    - ECOM.SDF.DIM_PRODUCTS.PRODUCT_ID
+  source-locations:
+  - path: models/ecom/sdf/order_payment_dtls.sql

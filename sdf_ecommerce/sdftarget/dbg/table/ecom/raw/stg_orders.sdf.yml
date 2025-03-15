@@ -1,0 +1,58 @@
+table:
+  name: ECOM.RAW.STG_ORDERS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - ECOM.SDF.DIM_ORDERS
+  columns:
+  - name: ORDER_ID
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_ID
+  - name: CUST_ID
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.CUST_ID
+  - name: ORDER_DATE
+    datatype: date
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_DATE
+  - name: ORDER_QTY
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_QTY
+  - name: AMOUNT
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.AMOUNT
+  - name: PAYMENT_ID
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.PAYMENT_ID
+  - name: PRODUCT_ID
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.PRODUCT_ID
+  - name: STATUS
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.STATUS
+  - name: RATING
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.RATING
+  source-locations:
+  - path: workspace.sdf.yml

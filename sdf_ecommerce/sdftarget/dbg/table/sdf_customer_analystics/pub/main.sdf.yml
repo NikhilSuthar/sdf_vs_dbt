@@ -1,0 +1,11 @@
+table:
+  name: SDF_CUSTOMER_ANALYSTICS.PUB.MAIN
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  columns:
+  - name: MESSAGE
+    datatype: varchar not null
+  source-locations:
+  - path: models/main.sql

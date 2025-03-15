@@ -1,0 +1,38 @@
+table:
+  name: ECOM.RAW.STG_PAYMENTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - ECOM.SDF.DIM_PAYMENTS
+  columns:
+  - name: PAYMENT_ID
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PAYMENTS.PAYMENT_ID
+  - name: PAYMENT_DATE
+    datatype: date
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PAYMENTS.PAYMENT_DATE
+  - name: PAYMENT_METHOD
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PAYMENTS.PAYMENT_METHOD
+  - name: PAYMENT_AMOUNT
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PAYMENTS.PAYMENT_AMOUNT
+  - name: STATUS
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_PAYMENTS.STATUS
+  source-locations:
+  - path: workspace.sdf.yml

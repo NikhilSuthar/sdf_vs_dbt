@@ -1,0 +1,15 @@
+table:
+  name: DATALAKE.DBT_TEST.MY_FIRST_DBT_MODEL
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - DATALAKE.DBT_TEST.MY_DETAILS
+  columns:
+  - name: ID
+    datatype: decimal(1, 0)
+  source-locations:
+  - path: workspace.sdf.yml

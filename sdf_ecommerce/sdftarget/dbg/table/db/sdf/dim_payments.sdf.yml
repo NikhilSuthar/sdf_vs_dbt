@@ -1,0 +1,23 @@
+table:
+  name: DB.SDF.DIM_PAYMENTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - DB.RAW.STG_PAYMENTS
+  columns:
+  - name: PAYMENT_ID
+    datatype: decimal(38, 0)
+  - name: PAYMENT_DATE
+    datatype: date
+  - name: PAYMENT_METHOD
+    datatype: varchar
+  - name: PAYMENT_AMOUNT
+    datatype: decimal(38, 0)
+  - name: STATUS
+    datatype: varchar
+  - name: REFRESHED_AT
+    datatype: timestamp
+  source-locations:
+  - path: models/db/sdf/dim_payments.sql

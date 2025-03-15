@@ -1,0 +1,11 @@
+models:
+  - name: dim_customers
+    config:
+      tags: ['PII_TABLE']
+    columns:
+      - name: phone_number
+        tags: ['PII_COLUMN']
+      - name: email
+        tags: ['PII_COLUMN']
+
+

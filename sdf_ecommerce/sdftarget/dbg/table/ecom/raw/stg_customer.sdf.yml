@@ -1,0 +1,53 @@
+table:
+  name: ECOM.RAW.STG_CUSTOMER
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - ECOM.SDF.DIM_CUSTOMERS
+  columns:
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+  - name: FIRST_NAME
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.FIRST_NAME
+  - name: LAST_NAME
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.LAST_NAME
+  - name: EMAIL
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.EMAIL
+  - name: PHONE_NUMBER
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.PHONE_NUMBER
+  - name: ADDRESS
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.ADDRESS
+  - name: CITY
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.CITY
+  - name: COUNTRY
+    datatype: varchar
+    forward-lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.COUNTRY
+  source-locations:
+  - path: workspace.sdf.yml

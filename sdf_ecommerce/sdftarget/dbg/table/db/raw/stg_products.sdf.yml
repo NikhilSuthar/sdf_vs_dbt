@@ -1,0 +1,23 @@
+table:
+  name: DB.RAW.STG_PRODUCTS
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  origin: remote
+  exists-remotely: true
+  depended-on-by:
+  - DB.SDF.DIM_PRODUCTS
+  columns:
+  - name: PRODUCT_ID
+    datatype: decimal(38, 0)
+  - name: NAME
+    datatype: varchar
+  - name: CATEGORY
+    datatype: varchar
+  - name: DESCRIPTION
+    datatype: varchar
+  - name: PRICE
+    datatype: decimal(38, 0)
+  source-locations:
+  - path: workspace.sdf.yml

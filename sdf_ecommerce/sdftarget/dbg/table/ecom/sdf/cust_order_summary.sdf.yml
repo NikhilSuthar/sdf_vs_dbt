@@ -1,0 +1,55 @@
+table:
+  name: ECOM.SDF.CUST_ORDER_SUMMARY
+  dialect: snowflake
+  casing-policy: preserve
+  materialization: table
+  purpose: model
+  dependencies:
+  - ECOM.SDF.DIM_CUSTOMERS
+  - ECOM.SDF.DIM_ORDERS
+  columns:
+  - name: CUST_ID
+    datatype: decimal(38, 0)
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+  - name: FIRST_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.FIRST_NAME
+  - name: LAST_NAME
+    datatype: varchar
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_CUSTOMERS.LAST_NAME
+  - name: TOTAL_ORDERS
+    datatype: decimal(38, 0)
+    lineage:
+      modify:
+      - ECOM.SDF.DIM_ORDERS.ORDER_ID
+  - name: TOTAL_SPENT
+    datatype: decimal(38, 0)
+    lineage:
+      modify:
+      - ECOM.SDF.DIM_ORDERS.AMOUNT
+  - name: FIRST_ORDER_DATE
+    datatype: date
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_DATE
+  - name: LAST_ORDER_DATE
+    datatype: date
+    lineage:
+      copy:
+      - ECOM.SDF.DIM_ORDERS.ORDER_DATE
+  - name: REFRESHED_AT
+    datatype: timestamp
+  lineage:
+    scan:
+    - ECOM.SDF.DIM_CUSTOMERS.CUST_ID
+    - ECOM.SDF.DIM_CUSTOMERS.FIRST_NAME
+    - ECOM.SDF.DIM_CUSTOMERS.LAST_NAME
+    - ECOM.SDF.DIM_ORDERS.CUST_ID
+  source-locations:
+  - path: models/ecom/sdf/cust_order_summary.sql

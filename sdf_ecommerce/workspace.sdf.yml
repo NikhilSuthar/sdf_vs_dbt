@@ -1,0 +1,30 @@
+workspace:
+  name: sdf_customer_analystics
+  edition: "1.3"
+  description: "A minimal workspace"
+  includes:
+    - path: models
+      index: catalog-schema-table-name
+  integrations:
+      - provider: snowflake
+        type: database
+        sources: 
+          - pattern: ecom.raw.*
+        targets: 
+          - pattern: ecom.sdf.*
+  defaults:
+    dialect: snowflake
+    preprocessor: jinja
+    materialization: table
+---
+config:
+  name: scripts
+  description: My custom scripts
+  properties:
+    current_ts: "date"
+---
+classifier:
+  name: PII
+  labels:
+    - name: PHONE
+    - name: EMAIL
